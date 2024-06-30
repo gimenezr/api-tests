@@ -41,7 +41,7 @@ describe("Add rating movie", () => {
     expect(response.body.success).to.be.false;
     expect(
       response.body.status_message,
-      "The expected status is nor valid"
+      "The expected status is not valid"
     ).equal("Invalid parameters: Your request parameters are incorrect.");
   });
 });
