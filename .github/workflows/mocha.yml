@@ -1,0 +1,54 @@
+name: RUN API Tests CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Run the test cases on demand
+
+jobs:
+  RUN-API-Tests:
+    runs-on: ubuntu-latest
+    env:
+      BASE_URL: ${{vars.BASE_URL}}
+      ACCESS_TOKEN: ${{secrets.ACCESS_TOKEN}}
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Installation of related packages
+        run: npm ci
+
+      - name: RUN SuperTest API Testing
+        run: npm run test-report
+
+      - name: Archive SuperTest mochawesome test report
+        uses: actions/upload-artifact@v3
+        with:
+          name: SuperTest-mochawesome-test-report
+          path: mochawesome-report
+
+      - name: Upload SuperTest mochawesome report to GitHub
+        uses: actions/upload-artifact@v3
+        with:
+          name: SuperTest-mochawesome-test-report
+          path: mochawesome-report
