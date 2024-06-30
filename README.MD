@@ -26,7 +26,12 @@ Automated testing is set up using GitHub Actions:
 3. Click the Run workflow button on the right.
 4. Wait for the workflow to complete.
 5. To view the generated report: Go to the finished job. Scroll down and access the attached report.
-1. Build Docker image
+
+Workflow
+![alt text](image-3.png)
+
+Report
+![alt text](image-2.png)
 
 
 ## How to execute a dockerize environment
