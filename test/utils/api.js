@@ -16,13 +16,10 @@ const setDefaultHeaders = (supertest) => {
 
 export const get = (path) => {
   const supertest = superTest(ENV.BASE_URL).get(path);
-  console.log("GET - " + ENV.BASE_URL);
   return setDefaultHeaders(supertest);
 };
 
 export const post = (path) => {
   const supertest = superTest(ENV.BASE_URL).post(path);
-  console.log("POST - " + ENV.BASE_URL);
-
   return setDefaultHeaders(supertest);
 };
