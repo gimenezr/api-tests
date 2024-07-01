@@ -5,7 +5,7 @@ import ENV from "../utils/environment.js";
 describe("Top rated movies", () => {
   it("should return an error when the user is not authenticated", async () => {
     superTest(ENV.BASE_URL)
-      .get("/discover/movie")
+      .get("/top_rated")
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
       .set("Authorization", "wrongToken")
