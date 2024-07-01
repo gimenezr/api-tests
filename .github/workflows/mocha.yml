@@ -2,19 +2,9 @@ name: RUN API Tests CI
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
-
-  workflow_call:
-    inputs:
-      environment:
-        required: true
-        type: string
+    branches:
+      - main
   workflow_dispatch:
-    inputs:
-      environment:
-        description: Run the test cases on demand
 
 jobs:
   RUN-API-Tests:
